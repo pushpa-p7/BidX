@@ -44,7 +44,8 @@
 
 https://stellar.expert/explorer/testnet/contract/CDKJLCZDSBITX2LSBEKQNAW45MQEWAGA3XNMDF7JPDWFH6UAPU5T6MCP
 
-<img width="1901" height="866" alt="image" src="https://github.com/user-attachments/assets/a85d033e-d459-47ce-ad8b-1ce5895465ad" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/26f279d7-ac23-4ce7-936d-ebd0ecfb3eba" />
+
 
 ---
 
