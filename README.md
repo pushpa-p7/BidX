@@ -364,9 +364,7 @@ cargo test -p auction-contract
 
 Real testnet users interacted directly with the deployed Soroban contract, and their structured feedback drove nine completed development iterations — covering theme accessibility, multi-wallet support, mobile responsiveness, auto-refunding safety, mainnet readiness, board search/filtering, live analytics, countdown urgency, and escrowed bidding with anti-snipe protection.
 
-- **📋 Feedback Form:** [Fill out the Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfa45WCSx3aEYmMvyQZ4n-ZnO_2xJQUBZ9nzoFQ_b8zdR9UPQ/viewform?usp=sharing&ouid=104656030980064295821)
-- **📊 Live Responses Database:** [View Responses Spreadsheet](https://docs.google.com/spreadsheets/d/1TpOJGbwcuay3qbAOZRUt4OgfbKvadTW553FGRyVml2Y/edit?usp=sharing)
-- **📜 Full Iteration Log:** [View Git Commit History](https://github.com/ankush-shaw/BidX/commits/main)
+- **📜 Full Iteration Log:** [View Git Commit History](https://github.com/pushpa-p7/BidX/commits/main)
 
 ---
 
