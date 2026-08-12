@@ -77,8 +77,8 @@ export function Logo({ size = 32, className = '', showText = true, textClassName
 
       {showText && (
         <span className={`font-black tracking-tight leading-none ${textClassName}`}>
-          <span className="text-secondary-container">OnChain</span>
-          <span className="text-on-primary">Auction</span>
+          <span className="text-secondary-container">Bid</span>
+          <span className="text-on-primary">X</span>
         </span>
       )}
     </div>
