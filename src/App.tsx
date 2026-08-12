@@ -71,6 +71,21 @@ const trustPoints = [
   },
 ];
 
+// ── New: floating glass chips — small drifting labels scattered across the hero.
+// Each has its own drift animation + delay so the field feels organic, not mechanical.
+const heroFloatChips: {
+  label: string;
+  icon: typeof Sparkles;
+  className: string;
+  anim: 'animate-drift-a' | 'animate-drift-b' | 'animate-drift-c';
+  delay?: string;
+}[] = [
+  { label: 'LIVE · 3 bids', icon: Zap, className: 'top-[6%] right-[6%]', anim: 'animate-drift-a' },
+  { label: '10 XLM start', icon: Sparkles, className: 'top-[46%] right-[-2%]', anim: 'animate-drift-b', delay: '1.2s' },
+  { label: 'Settled on-chain', icon: ShieldCheck, className: 'bottom-[10%] left-[2%]', anim: 'animate-drift-c', delay: '0.6s' },
+  { label: '128 bidders', icon: Users, className: 'top-[2%] left-[38%]', anim: 'animate-drift-b', delay: '2s' },
+];
+
 function App() {
   const { wallet, connect, disconnect } = useWallet();
   const { isDark, toggle } = useTheme();
@@ -300,7 +315,7 @@ function App() {
             {/* Logo + Nav */}
             <div className="flex items-center gap-8">
               <a href="/" className="flex items-center gap-2 select-none group">
-                <Logo size={34} showText={true} textClassName="text-headline-sm hidden sm:inline" />
+                <Logo size={34} showText={true} textClassName="text-headline-sm hidden sm:inline headline-italic" />
               </a>
               <nav className="hidden md:flex gap-2 items-center">
                 <button
@@ -395,12 +410,26 @@ function App() {
       </div>
 
       <main>
-        {/* ══ HERO — mesh gradient backdrop, asymmetric layout ══ */}
+        {/* ══ HERO — mesh gradient backdrop, asymmetric layout, floating chip field ══ */}
         <section className="relative overflow-hidden mesh-bg hero-grid-bg border-b border-outline-variant dark:border-slate-800/80">
           {/* Floating glow orbs */}
           <div className="absolute top-10 -left-24 w-96 h-96 bg-secondary-container/10 blur-[120px] rounded-full pointer-events-none animate-float-slow" />
           <div className="absolute -bottom-32 right-0 w-[28rem] h-[28rem] bg-auction-upcoming/10 blur-[140px] rounded-full pointer-events-none animate-float-slow" style={{ animationDelay: '2s' }} />
           <div className="absolute top-1/3 right-1/4 w-56 h-56 bg-auction-live/8 blur-[100px] rounded-full pointer-events-none animate-float" style={{ animationDelay: '0.8s' }} />
+
+          {/* ── New: drifting glass chips — ambient, non-interactive, hidden on small screens so they don't crowd content ── */}
+          <div className="hidden lg:block absolute inset-0 z-0">
+            {heroFloatChips.map((chip) => (
+              <div
+                key={chip.label}
+                className={`float-chip ${chip.className} ${chip.anim}`}
+                style={chip.delay ? { animationDelay: chip.delay } : undefined}
+              >
+                <chip.icon size={13} className="text-secondary-container shrink-0" />
+                <span className="italic font-display">{chip.label}</span>
+              </div>
+            ))}
+          </div>
 
           <div className="mx-auto max-w-container-max px-gutter py-16 lg:py-28 flex flex-col lg:flex-row items-center gap-14">
 
@@ -411,7 +440,7 @@ function App() {
                 On-chain · Stellar Soroban · {networkConfig.label}
               </div>
 
-              <h1 className="text-headline-lg-mobile sm:text-headline-xl text-on-background dark:text-slate-50 leading-[1.05]">
+              <h1 className="headline-italic text-headline-lg-mobile sm:text-headline-xl text-on-background dark:text-slate-50 leading-[1.05] font-normal">
                 Bid on Projects.<br />
                 <span className="gradient-text">Settle On-Chain.</span>
               </h1>
@@ -454,8 +483,11 @@ function App() {
               )}
             </div>
 
-            {/* Right: Manager Panel — neon-bordered glass console */}
-            <div className="w-full max-w-[480px] z-10">
+            {/* Right: Manager Panel — neon-bordered glass console, with a small orbiting accent ring */}
+            <div className="w-full max-w-[480px] z-10 relative">
+              {/* ── New: orbiting dashed ring behind the console, purely decorative ── */}
+              <div className="hidden xl:block absolute -top-10 -right-10 w-24 h-24 rounded-full border border-dashed border-secondary-container/30 animate-spin-slow pointer-events-none" />
+
               <div className="relative rounded-2xl neon-border">
                 <div className="relative bg-surface-container-lowest border border-outline-variant rounded-2xl shadow-2xl overflow-hidden dark:bg-slate-900 dark:border-slate-800 animate-glow-pulse">
                   <div className="bg-primary px-6 py-4 flex items-center gap-3 dark:bg-slate-950 border-b border-white/5">
@@ -463,7 +495,7 @@ function App() {
                       <PlusCircle size={19} className="text-secondary-container" />
                     </div>
                     <div>
-                      <h3 className="text-on-primary font-bold text-sm">List a Project</h3>
+                      <h3 className="headline-italic text-on-primary font-normal text-base">List a Project</h3>
                       <p className="text-on-primary-container text-label-sm opacity-70">Create an on-chain auction</p>
                     </div>
                   </div>
@@ -516,7 +548,7 @@ function App() {
               <section>
                 <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div>
-                    <h2 className="text-headline-md text-on-background dark:text-slate-100">Project Board</h2>
+                    <h2 className="headline-italic text-headline-md text-on-background dark:text-slate-100 font-normal">Project Board</h2>
                     <p className="mt-0.5 text-body-sm text-on-surface-variant dark:text-slate-400">Live and recently ended auctions open for public bidding.</p>
                   </div>
                   <button onClick={refreshAuctions} disabled={loading} className="btn-ghost stable-button self-start sm:self-auto">
@@ -594,16 +626,27 @@ function App() {
         </AnimatePresence>
         </div>
 
-        {/* ══ WHY ON-CHAIN — bento trust grid ══ */}
+        {/* ══ WHY ON-CHAIN — bento trust grid with a small floating accent field ══ */}
         <section className="py-section-padding bg-surface-container-low border-t border-outline-variant dark:bg-slate-900/10 dark:border-slate-800/80 relative overflow-hidden">
           <div className="absolute inset-0 hero-grid-bg opacity-40 pointer-events-none" />
+
+          {/* ── New: a couple of ambient floating chips for this section only ── */}
+          <div className="hidden lg:block absolute top-8 right-10 float-chip animate-drift-a" style={{ animationDelay: '0.4s' }}>
+            <ShieldCheck size={13} className="text-secondary-container shrink-0" />
+            <span className="italic font-display">No admin keys</span>
+          </div>
+          <div className="hidden lg:block absolute bottom-10 left-10 float-chip animate-drift-c" style={{ animationDelay: '1.4s' }}>
+            <Globe2 size={13} className="text-secondary-container shrink-0" />
+            <span className="italic font-display">Permissionless</span>
+          </div>
+
           <div className="mx-auto max-w-container-max px-gutter relative z-10">
             <div className="text-center mb-14">
               <div className="pill-badge mx-auto mb-4">
                 <Zap size={13} />
                 Why BidX
               </div>
-              <h2 className="text-headline-lg text-on-background dark:text-slate-100">Built for trustless bidding</h2>
+              <h2 className="headline-italic text-headline-lg text-on-background dark:text-slate-100 font-normal">Built for trustless bidding</h2>
               <p className="mt-3 text-body-lg text-on-surface-variant max-w-2xl mx-auto dark:text-slate-400 font-medium">Powered by Stellar Soroban — transparent, trustless, permissionless.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -619,7 +662,7 @@ function App() {
                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-5 ${accent ? 'bg-secondary-container/15' : 'bg-surface-container dark:bg-slate-800'}`}>
                     <Icon size={24} className={accent ? 'text-secondary-container' : 'text-primary dark:text-slate-300'} />
                   </div>
-                  <h3 className={`text-headline-sm mb-3 ${accent ? 'text-on-primary' : 'text-on-background dark:text-slate-200'}`}>{title}</h3>
+                  <h3 className={`headline-italic font-normal text-headline-sm mb-3 ${accent ? 'text-on-primary' : 'text-on-background dark:text-slate-200'}`}>{title}</h3>
                   <p className={`text-body-sm leading-relaxed ${accent ? 'text-on-primary-container' : 'text-on-surface-variant dark:text-slate-400'}`}>{body}</p>
                 </div>
               ))}
@@ -631,9 +674,16 @@ function App() {
         <section className="relative overflow-hidden bg-primary dark:bg-slate-950">
           <div className="absolute top-0 -left-16 w-72 h-72 bg-secondary-container/10 blur-[100px] rounded-full pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-80 h-80 bg-auction-upcoming/10 blur-[120px] rounded-full pointer-events-none" />
+
+          {/* ── New: one floating chip inside the CTA banner ── */}
+          <div className="hidden md:block absolute top-6 right-16 float-chip animate-drift-b" style={{ animationDelay: '0.9s' }}>
+            <Sparkles size={13} className="text-secondary-container shrink-0" />
+            <span className="italic font-display">One click away</span>
+          </div>
+
           <div className="mx-auto max-w-container-max px-gutter py-16 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
             <div>
-              <h2 className="text-headline-md text-on-primary">Ready to list your first project?</h2>
+              <h2 className="headline-italic text-headline-md text-on-primary font-normal">Ready to list your first project?</h2>
               <p className="mt-2 text-body-md text-on-primary opacity-60 max-w-lg">Connect a wallet and put your project up for trustless bidding — settlement happens automatically on-chain.</p>
             </div>
             <button
@@ -652,7 +702,7 @@ function App() {
       <footer className="bg-primary border-t border-white/10 dark:bg-slate-950 dark:border-slate-900">
         <div className="mx-auto max-w-container-max px-gutter py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <Logo size={30} showText={true} textClassName="text-body-md" />
+            <Logo size={30} showText={true} textClassName="text-body-md headline-italic" />
             <p className="text-on-primary opacity-50 text-body-sm leading-relaxed">
               A trustless project auction platform built on Stellar Soroban. Transparent bids, automatic settlement.
             </p>
