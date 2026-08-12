@@ -14,6 +14,8 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        // ── New: editorial italic display face used for headlines/signatures ──
+        display: ['"Instrument Serif"', 'Georgia', 'serif'],
       },
       fontSize: {
         'headline-xl':  ['56px', { lineHeight: '60px',  letterSpacing: '-0.03em', fontWeight: '800' }],
@@ -123,6 +125,32 @@ export default {
         'auction':    '0 2px 12px rgba(14, 10, 31, 0.08)',
         'neon':       '0 0 0 1px rgba(198,255,61,0.4), 0 0 24px rgba(198,255,61,0.25)',
         'neon-lg':    '0 0 0 1px rgba(198,255,61,0.5), 0 0 48px rgba(198,255,61,0.35)',
+        'chip':       '0 8px 24px rgba(14, 10, 31, 0.35), inset 0 1px 0 rgba(255,255,255,0.06)',
+      },
+      keyframes: {
+        // ── New: floating chip motion paths (each slightly different so the field doesn't feel mechanical) ──
+        'drift-a': {
+          '0%, 100%': { transform: 'translate(0, 0) rotate(-4deg)' },
+          '50%':      { transform: 'translate(14px, -22px) rotate(3deg)' },
+        },
+        'drift-b': {
+          '0%, 100%': { transform: 'translate(0, 0) rotate(3deg)' },
+          '50%':      { transform: 'translate(-18px, 16px) rotate(-2deg)' },
+        },
+        'drift-c': {
+          '0%, 100%': { transform: 'translate(0, 0) rotate(-2deg)' },
+          '50%':      { transform: 'translate(10px, 20px) rotate(4deg)' },
+        },
+        'spin-slow': {
+          from: { transform: 'rotate(0deg)' },
+          to:   { transform: 'rotate(360deg)' },
+        },
+      },
+      animation: {
+        'drift-a': 'drift-a 7s ease-in-out infinite',
+        'drift-b': 'drift-b 9s ease-in-out infinite',
+        'drift-c': 'drift-c 8s ease-in-out infinite',
+        'spin-slow': 'spin-slow 14s linear infinite',
       },
     },
   },
