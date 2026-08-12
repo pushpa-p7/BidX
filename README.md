@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔨 BidX
+#  BidX
 ### Decentralized On-Chain Project Bidding & Auction Platform
 
 **Built on Stellar / Soroban** — trustless XLM-backed bidding with instant escrow refunds and automatic settlement.
@@ -13,7 +13,7 @@
 ![Stellar](https://img.shields.io/badge/Stellar-Testnet-7D00FF?logo=stellar)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-[🌐 Live Demo](https://onchain-auction.vercel.app/) · [🎥 Demo Video](https://drive.google.com/file/d/14AbMnbf_OQNQ7jH9q6hOr0vyzt52T1pG/view?usp=sharing) · [📊 User Feedback](https://docs.google.com/spreadsheets/d/1TpOJGbwcuay3qbAOZRUt4OgfbKvadTW553FGRyVml2Y/edit?usp=sharing)
+[🌐 Live Demo](https://bid-x-cyan.vercel.app/) · [🎥 Demo Video](https://drive.google.com/file/d/14AbMnbf_OQNQ7jH9q6hOr0vyzt52T1pG/view?usp=sharing)
 
 </div>
 
@@ -62,9 +62,7 @@ At its core, BidX solves a real trust problem in traditional bidding: sellers ca
 |---|---|
 | 🚀 Live App | [onchain-auction.vercel.app](https://onchain-auction.vercel.app/) |
 | 🎥 Demo Video | [Watch on Google Drive](https://drive.google.com/file/d/14AbMnbf_OQNQ7jH9q6hOr0vyzt52T1pG/view?usp=sharing) |
-| 📽️ Pitch Deck | [View Presentation](https://docs.google.com/presentation/d/1b2FdjQvPswGlY00AivnkJaLB3KKDDh-A/edit?usp=sharing&ouid=104656030980064295821&rtpof=true&sd=true) |
-| ⚙️ CI Pipeline | [GitHub Actions](https://github.com/ankush-shaw/BidX/actions) |
-| 📊 User Feedback | [Visit Link](https://docs.google.com/spreadsheets/d/1TpOJGbwcuay3qbAOZRUt4OgfbKvadTW553FGRyVml2Y/edit?usp=sharing) |
+| ⚙️ CI Pipeline | [GitHub Actions](https://github.com/pushpa-p7/BidX/actions) |
 
 ---
 
@@ -154,7 +152,7 @@ The main contract never trusts an external service to issue refunds — the escr
 
 ## ✅ CI/CD Pipeline Status
 
-[![CI/CD Status](https://github.com/ankush-shaw/BidX/actions/workflows/ci.yml/badge.svg)](https://github.com/ankush-shaw/BidX/actions/workflows/ci.yml)
+[![CI/CD Status](https://github.com/pushpa-p7/BidX/actions/workflows/ci.yml/badge.svg)](https://github.com/pushpa-p7/BidX/actions/workflows/ci.yml)
 
 **Pipeline runs:**
 - ✅ Node dependency installation
@@ -257,7 +255,7 @@ Inspect verified on-chain transactions and call history on the Stellar Developme
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/ankush-shaw/BidX.git
+   git clone https://github.com/pushpa-p7/BidX.git
    cd BidX
    ```
 
