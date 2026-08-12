@@ -1,3 +1,6 @@
+/* ── New: editorial italic serif for headlines/signatures ────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -117,6 +120,23 @@
     @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full
            text-label-sm uppercase tracking-wider font-bold
            border border-secondary-container/30 bg-secondary-container/10 text-secondary-container;
+  }
+
+  /* ── New: italic display headline — the signature type treatment ─────── */
+  .headline-italic {
+    @apply font-display italic;
+    font-style: italic;
+  }
+
+  /* ── New: floating glass chip — small drifting labels scattered around hero/sections ── */
+  .float-chip {
+    @apply pointer-events-none select-none absolute flex items-center gap-1.5
+           rounded-xl border border-white/10 bg-white/[0.06] backdrop-blur-md
+           px-3 py-1.5 text-label-sm font-bold text-on-primary shadow-chip;
+  }
+
+  .dark .float-chip {
+    @apply bg-slate-900/60 border-slate-700/60;
   }
 }
 
