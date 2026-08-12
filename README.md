@@ -1,11 +1,11 @@
-# 🔨 OnChainAuction
+# 🔨 BidX
 
 [![Stellar](https://img.shields.io/badge/Network-Stellar-blue?style=for-the-badge&logo=stellar)](https://stellar.org)
 [![Soroban](https://img.shields.io/badge/Standard-Soroban-green?style=for-the-badge&logo=rust)](https://soroban.stellar.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![CI/CD Status](https://img.shields.io/github/actions/workflow/status/ankush-shaw/On-Chain-Auction/ci.yml?branch=main&style=for-the-badge&label=Build%20%26%20Test)](https://github.com/ankush-shaw/On-Chain-Auction/actions)
+[![CI/CD Status](https://img.shields.io/github/actions/workflow/status/ankush-shaw/BidX/ci.yml?branch=main&style=for-the-badge&label=Build%20%26%20Test)](https://github.com/ankush-shaw/BidX/actions)
 
-A decentralized, on-chain project bidding and auction platform built on **Stellar Soroban**. Project managers list project opportunities directly to the blockchain, and public bidders submit trustless XLM-backed bids in real-time. The smart contract holds the active highest bid, refunds the previous bidder instantly and automatically, and securely transfers the winning bid to the seller upon auction settlement.
+**BidX** is a decentralized, on-chain project bidding and auction platform built on **Stellar Soroban**. Project managers list opportunities directly on-chain, and public bidders submit trustless XLM-backed bids in real time. The smart contract escrows the active highest bid, instantly refunds the previous bidder on every outbid, and securely settles the winning bid to the seller when the auction closes.
 
 ---
 
@@ -15,17 +15,16 @@ A decentralized, on-chain project bidding and auction platform built on **Stella
 
 <img width="1901" height="866" alt="image" src="https://github.com/user-attachments/assets/a85d033e-d459-47ce-ad8b-1ce5895465ad" />
 
-
 #### 🌙 Dark Mode & Manager Console
 
 <img width="1917" height="867" alt="image" src="https://github.com/user-attachments/assets/f0cf56c5-cfb7-4521-8ebf-b0c7d148b711" />
 
-### Mobile Responsive view
+### Mobile Responsive View
 
 <p align="center">
     <img width="272" height="582" alt="image" src="https://github.com/user-attachments/assets/415b3070-010d-457b-9fca-a7e428c03dca" />
-
 </p>
+
 ### Stellar Expert
 
 <img width="1901" height="872" alt="image" src="https://github.com/user-attachments/assets/fd431359-40e2-4288-8e59-b15d528ae9a3" />
@@ -36,27 +35,27 @@ A decentralized, on-chain project bidding and auction platform built on **Stella
 
 | Item | Value |
 |:---|:---|
-| **Live Demo** | [https://onchain-auction.vercel.app/](https://onchain-auction.vercel.app/)  |
-| **Demo Video** | [Watch Demo Video](https://drive.google.com/file/d/14AbMnbf_OQNQ7jH9q6hOr0vyzt52T1pG/view?usp=sharing)|
+| **Live Demo** | [https://onchain-auction.vercel.app/](https://onchain-auction.vercel.app/) |
+| **Demo Video** | [Watch Demo Video](https://drive.google.com/file/d/14AbMnbf_OQNQ7jH9q6hOr0vyzt52T1pG/view?usp=sharing) |
 | **Pitch Deck / PPT** | [View Pitch Deck](https://docs.google.com/presentation/d/1b2FdjQvPswGlY00AivnkJaLB3KKDDh-A/edit?usp=sharing&ouid=104656030980064295821&rtpof=true&sd=true) |
 | **Contract ID** | `CDKJLCZDSBITX2LSBEKQNAW45MQEWAGA3XNMDF7JPDWFH6UAPU5T6MCP` |
 | **Network** | Stellar Testnet, with an app-level Mainnet toggle |
 | **Explorer** | [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CDKJLCZDSBITX2LSBEKQNAW45MQEWAGA3XNMDF7JPDWFH6UAPU5T6MCP) |
 | **Bidding Token** | Native XLM |
-| **Commits** | Meaningful commits with structured history — [View Git Commit History](https://github.com/ankush-shaw/On-Chain-Auction/commits/main) |
+| **Commits** | Meaningful commits with structured history — [View Git Commit History](https://github.com/ankush-shaw/BidX/commits/main) |
 
 ---
 
 ## 👥 User Onboarding & Testnet Validation
 
-We successfully gathered feedback from real testnet users to validate our decentralized bidding experience and gathered structured suggestions to refine the product.
+We gathered feedback from real testnet users to validate BidX's decentralized bidding experience, and used their structured suggestions to drive product refinement.
 
 *   **📋 Feedback Form:** [Fill out the Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfa45WCSx3aEYmMvyQZ4n-ZnO_2xJQUBZ9nzoFQ_b8zdR9UPQ/viewform?usp=sharing&ouid=104656030980064295821)
 *   **📊 Live Responses Database:** [View Responses Spreadsheet](https://docs.google.com/spreadsheets/d/1TpOJGbwcuay3qbAOZRUt4OgfbKvadTW553FGRyVml2Y/edit?usp=sharing)
 
 ### ✅ Verification of Testnet Activity
 
-Users interacted directly with our deployed Soroban contract on the Stellar Testnet. You can inspect all verified on-chain transactions and call history at:
+Users interacted directly with our deployed Soroban contract on the Stellar Testnet. All verified on-chain transactions and call history are inspectable at:
 
 **[→ View Deployed Contract on Stellar.Expert Explorer](https://stellar.expert/explorer/testnet/contract/CDKJLCZDSBITX2LSBEKQNAW45MQEWAGA3XNMDF7JPDWFH6UAPU5T6MCP)**
 
@@ -64,52 +63,52 @@ Users interacted directly with our deployed Soroban contract on the Stellar Test
 
 ## 🔄 User Feedback — Completed Iterations
 
-Based on structured feedback collected during initial user onboarding phases, we completed major development iterations to address UX, accessibility, and wallet security:
+Based on structured feedback collected during initial user onboarding, we shipped the following iterations to address UX, accessibility, and wallet security:
 
 ### 🔹 Iteration 1: Light Mode Aesthetic Overhaul (Soft Cream Theme)
 *   **Feedback Received:** *"The default bright white light mode is extremely harsh and causes eye fatigue when viewing bid charts and project boards."*
-*   **What We Did:** Designed and implemented a custom `cream` color system (`cream-50` to `cream-400`). Replaced the pure white layout with a warm, low-contrast cream palette (`#faf6ef` background, `#fefcf8` card panels, `#e8dbc5` borders) to maximize readability and reduce visual strain.
-*   **Git Commit:** [Design: Update light mode to use soft warm cream tones](https://github.com/ankush-shaw/On-Chain-Auction/commit/46ff03e)
+*   **What We Did:** Designed and implemented a custom `cream` color system (`cream-50` to `cream-400`), replacing the pure white layout with a warm, low-contrast cream palette (`#faf6ef` background, `#fefcf8` card panels, `#e8dbc5` borders) to improve readability and reduce visual strain.
+*   **Git Commit:** [Design: Update light mode to use soft warm cream tones](https://github.com/ankush-shaw/BidX/commit/46ff03e)
 
 ### 🔹 Iteration 2: Unified Multi-Wallet Integration
 *   **Feedback Received:** *"Bidders use different browser wallets to store testnet XLM. Restricting login options to Freighter makes it difficult to participate."*
-*   **What We Did:** Implemented native support for **Freighter**, **Albedo**, **xBull**, and **Hana** extension wallets. Built a robust transaction signing utility that handles different wallet formats seamlessly and auto-refreshes account balances.
-*   **Git Commit:** [feat: Added Darkmode - Lightmode feature across the website](https://github.com/ankush-shaw/On-Chain-Auction/commit/46ff03e)
+*   **What We Did:** Added native support for **Freighter**, **Albedo**, **xBull**, and **Hana** extension wallets, with a unified transaction signing utility that handles each wallet's format and auto-refreshes account balances.
+*   **Git Commit:** [feat: Added Darkmode - Lightmode feature across the website](https://github.com/ankush-shaw/BidX/commit/46ff03e)
 
 ### 🔹 Iteration 3: Mobile Responsiveness & Text Truncation
 *   **Feedback Received:** *"The auction cards break when viewed on standard smartphones, and long cryptographic seller addresses push buttons off-screen."*
-*   **What We Did:** Made the layout fully responsive. Bidding rows now stack cleanly on mobile (`flex-col`) and expand side-by-side on wider displays. Long seller/bidder addresses are truncated to an elegant prefix/suffix format (`GBSG12...ABC123`) using clean CSS grids with full fallback hover tooltips.
-*   **Git Commit:** [Feat: Added responsiveness across the the whole app](https://github.com/ankush-shaw/On-Chain-Auction/commit/b39add1)
+*   **What We Did:** Made the layout fully responsive — bidding rows stack cleanly on mobile (`flex-col`) and expand side-by-side on wider displays. Long seller/bidder addresses now truncate to a prefix/suffix format (`GBSG12...ABC123`) with hover tooltips for the full address.
+*   **Git Commit:** [Feat: Added responsiveness across the whole app](https://github.com/ankush-shaw/BidX/commit/b39add1)
 
 ### 🔹 Iteration 4: Auto-Refunding Smart Contract Safety
 *   **Feedback Received:** *"I want to be sure that when I am outbid, my locked XLM funds are immediately returned to my wallet without manual withdrawal."*
-*   **What We Did:** Optimized the Rust Soroban contract's `place_bid` method. Whenever a higher bid is registered, the contract instantly initiates a transfer callback returning the previous bidder's funds synchronously in the same transaction block.
-*   **Git Commit:** [chore: update contract bindings & frontend wrappers](https://github.com/ankush-shaw/On-Chain-Auction/commit/caa45d5)
+*   **What We Did:** Optimized the Rust Soroban contract's `place_bid` method so that whenever a higher bid is registered, the contract synchronously refunds the previous bidder's escrowed funds within the same transaction block.
+*   **Git Commit:** [chore: update contract bindings & frontend wrappers](https://github.com/ankush-shaw/BidX/commit/caa45d5)
 
 ### 🔹 Iteration 5: Mainnet Network Toggle
 *   **Feedback Received:** *"The app only shows Testnet, so it is unclear whether the auction flow can be prepared for Mainnet users."*
-*   **What We Did:** Added a compact Testnet/Mainnet toggle in the header and wired the selected network through wallet balance checks, transaction signing, RPC calls, contract readiness, preview messaging, and Stellar.Expert explorer links. Mainnet stays in preview mode until its contract and native token environment values are configured.
-*   **Git Commit:** [feat: add testnet mainnet toggle](https://github.com/ankush-shaw/On-Chain-Auction/commit/e2d8e4e4a8f0828877eba3fc9b5913133b3ea64c)
+*   **What We Did:** Added a compact Testnet/Mainnet toggle in the header, wired through wallet balance checks, transaction signing, RPC calls, contract readiness, preview messaging, and Stellar.Expert explorer links. Mainnet stays in preview mode until its contract and native token environment values are configured.
+*   **Git Commit:** [feat: add testnet mainnet toggle](https://github.com/ankush-shaw/BidX/commit/e2d8e4e4a8f0828877eba3fc9b5913133b3ea64c)
 
 ### 🔹 Iteration 6: Advanced Board Explorer (Search, Filter & Bulk Stats)
 *   **Feedback Received:** *"When there are multiple projects listed, finding a specific auction is difficult, and there's no way to see global stats like Total Volume Locked (TVL) or pending settlements."*
-*   **What We Did:** Created a premium stats dashboard banner summarizing TVL, active bid ratios, average bids, and pending settlements. Added a query toolbar with fuzzy search input, status-based filters (All, Live, Ended, Settled), and price/time-based sorting controls.
-*   **Git Commit:** [feat: add testnet mainnet toggle](https://github.com/ankush-shaw/On-Chain-Auction/commit/b80b9539dc185d47535bc6c06e515868d76ab341)
+*   **What We Did:** Built a premium stats dashboard banner summarizing TVL, active bid ratios, average bids, and pending settlements, plus a query toolbar with fuzzy search, status-based filters (All, Live, Ended, Settled), and price/time-based sorting.
+*   **Git Commit:** [feat: advanced board explorer](https://github.com/ankush-shaw/BidX/commit/b80b9539dc185d47535bc6c06e515868d76ab341)
 
 ### 🔹 Iteration 7: Live Bid Price Chart (Expandable Analytics Panel)
 *   **Feedback Received:** *"Would love to see a chart of price updates so I can understand how competitive an auction has been."*
-*   **What We Did:** Added an expandable "View Analytics" panel to every auction card. Clicking it reveals a pure SVG sparkline chart derived from the known bid anchor points (starting bid → current high), plus a metrics row showing start price, current price, and auction window progress. A progress bar visualises how much of the bidding window has elapsed. Settled auctions use green styling; live auctions use indigo.
-*   **Git Commit:** [feat: add testnet mainnet toggle](https://github.com/ankush-shaw/On-Chain-Auction/commit/003a3e41a59b8577803b5d23cde9eecef4c3beee)
+*   **What We Did:** Added an expandable "View Analytics" panel to every auction card, rendering a pure SVG sparkline chart from the known bid anchor points (starting bid → current high), plus a metrics row for start price, current price, and auction window progress. Settled auctions use green styling; live auctions use indigo.
+*   **Git Commit:** [feat: live bid price chart](https://github.com/ankush-shaw/BidX/commit/003a3e41a59b8577803b5d23cde9eecef4c3beee)
 
 ### 🔹 Iteration 8: Countdown Urgency & Sticky Filter Bar (UI Polish)
-* **Feedback Received:** *"I never notice an auction is about to end until it's already closed — and I lose my search filters every time I switch tabs."*
-* **What We Did:** Added a live countdown badge to every auction card that switches from neutral to amber under 1 hour remaining and pulses red under 5 minutes, so urgency is visible at a glance without opening the card. Made the search/filter/sort bar sticky beneath the header so it stays in view while scrolling the board, and persisted the active filter state across tab switches (Live / Ending Soon / Settled) instead of resetting it.
-*   **Git Commit:** [feat: add testnet mainnet toggle](https://github.com/ankush-shaw/On-Chain-Auction/commit/5aee79099a1d4a8881b1202f992f4f38a03e43bd)
+*   **Feedback Received:** *"I never notice an auction is about to end until it's already closed — and I lose my search filters every time I switch tabs."*
+*   **What We Did:** Added a live countdown badge to every auction card, switching from neutral to amber under 1 hour remaining and pulsing red under 5 minutes. Made the search/filter/sort bar sticky beneath the header, and persisted the active filter (Live / Ending Soon / Settled) across tab switches.
+*   **Git Commit:** [feat: countdown urgency & sticky filters](https://github.com/ankush-shaw/BidX/commit/5aee79099a1d4a8881b1202f992f4f38a03e43bd)
 
 ### 🔹 Iteration 9: Escrowed Bidding with Automatic Extension Guard (Advanced Contract Mechanics)
-* **Feedback Received:** *"How do I know the seller can't just cancel after I've bid, or that a sniper can't grief the auction with a last-second lowball transaction spam?"*
-* **What We Did:** Hardened the contract beyond simple anti-sniping: bids are now held in on-chain escrow via the token client rather than trusted balances, `create_auction` locks the seller as immutable for that auction ID (no cancel-and-relist path once a bid exists), and repeated extension triggers within the anti-snipe window are capped per auction to prevent indefinite griefing extensions. Added `AuctionError::BidLocked` and `AuctionError::MaxExtensionsReached` cases, plus new unit tests (`test_escrow_holds_funds_until_settlement`, `test_extension_cap_enforced`) covering both paths.
-*   **Git Commit:** [feat: add testnet mainnet toggle](https://github.com/ankush-shaw/On-Chain-Auction/commit/f7b514917d27cf9c8e4f7a982793a128998ce5ec)
+*   **Feedback Received:** *"How do I know the seller can't just cancel after I've bid, or that a sniper can't grief the auction with a last-second lowball transaction spam?"*
+*   **What We Did:** Hardened the contract beyond simple anti-sniping: bids are now held in on-chain escrow via the token client rather than trusted balances, `create_auction` locks the seller as immutable for that auction ID (no cancel-and-relist path once a bid exists), and repeated extension triggers within the anti-snipe window are capped per auction to prevent indefinite griefing. Added `AuctionError::BidLocked` and `AuctionError::MaxExtensionsReached` cases, plus new unit tests (`test_escrow_holds_funds_until_settlement`, `test_extension_cap_enforced`) covering both paths.
+*   **Git Commit:** [feat: escrowed bidding with extension guard](https://github.com/ankush-shaw/BidX/commit/f7b514917d27cf9c8e4f7a982793a128998ce5ec)
 
 ---
 
@@ -137,7 +136,7 @@ Based on structured feedback collected during initial user onboarding phases, we
 
 ## 📐 System Architecture & Bidding Flow
 
-Below is the design of the OnChainAuction platform, illustrating how the React frontend interacts with multi-wallets and submits contract invocations to the Stellar Soroban network:
+The diagram below shows how the BidX React frontend interacts with multi-wallets and submits contract invocations to the Stellar Soroban network:
 
 ```mermaid
 graph TD
@@ -172,10 +171,10 @@ graph TD
     App --> Panel & Card
     Panel -- "1. Create Listing" --> SorobanService
     Card -- "2. Submit Bid / Settle" --> SorobanService
-    
+
     SorobanService --> Wallets
     Wallets --> Freighter & Albedo & XBull & Hana
-    
+
     Wallets -- "3. Sign Transaction XDR" --> SorobanService
     SorobanService -- "4. Submit Signed XDR" --> RPC
     RPC -- "5. Invoke Contract Call" --> Contract
@@ -186,9 +185,10 @@ graph TD
 ```
 
 ---
+
 ## 📜 Smart Contract API
 
-The core contract source code is located in [`contracts/auction-contract`](file:///c:/Users/ankus/OneDrive/Desktop/FUN%20PROJECTS/Stellar%20wallet%20project/contracts/auction-contract).
+The core contract source code is located in [`contracts/auction-contract`](./contracts/auction-contract).
 
 | Function | Arguments | Description |
 |:---|:---|:---|
@@ -210,7 +210,7 @@ The core contract source code is located in [`contracts/auction-contract`](file:
 *   [Stellar CLI](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup)
 
 ### 1. Installation
-Clone the repository and install the dependencies from the project root:
+Clone the repository and install dependencies from the project root:
 ```bash
 npm install
 ```
@@ -242,7 +242,7 @@ Open your browser and navigate to `http://localhost:5173`.
 
 ## 🧪 Smart Contract Testing
 
-The smart contract includes complete unit tests verifying the auction creation, bidding limits, refunds, and final settlements. Run the test suite:
+The smart contract includes complete unit tests verifying auction creation, bidding limits, refunds, and final settlements. Run the test suite:
 
 ```bash
 cargo test -p auction-contract
@@ -302,7 +302,7 @@ SKIP_SEED=1 npm run deploy:contract
 │   ├── components/
 │   │   ├── AuctionCard.tsx    # Bidding card with active timer & inputs
 │   │   ├── ManagerPanel.tsx   # Dashboard tool for listing new projects
-│   │   └── WalletConnect.tsx  # Interactive multi-wallet selector & logout.
+│   │   └── WalletConnect.tsx  # Interactive multi-wallet selector & logout
 │   ├── hooks/
 │   │   ├── useWallet.ts       # React state hook for Freighter, Albedo, xBull, Hana
 │   │   └── useTheme.ts        # React hook for persistent light/dark cream mode
@@ -317,4 +317,10 @@ SKIP_SEED=1 npm run deploy:contract
 ├── tailwind.config.js         # CSS design utility parameters with cream mode configurations
 ├── tsconfig.json              # TypeScript compilation rules
 └── README.md                  # Project documentation
+
+---
+
+## 📄 License
+
+Released under the [MIT License](https://opensource.org/licenses/MIT).
 ```
