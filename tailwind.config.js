@@ -16,86 +16,86 @@ export default {
         sans: ['Inter', 'sans-serif'],
       },
       fontSize: {
-        'headline-xl':  ['48px', { lineHeight: '56px',  letterSpacing: '-0.02em', fontWeight: '700' }],
-        'headline-lg':  ['32px', { lineHeight: '40px',  letterSpacing: '-0.01em', fontWeight: '700' }],
-        'headline-md':  ['24px', { lineHeight: '32px',  fontWeight: '600' }],
-        'headline-sm':  ['20px', { lineHeight: '28px',  fontWeight: '600' }],
-        'headline-lg-mobile': ['28px', { lineHeight: '36px', fontWeight: '700' }],
+        'headline-xl':  ['56px', { lineHeight: '60px',  letterSpacing: '-0.03em', fontWeight: '800' }],
+        'headline-lg':  ['34px', { lineHeight: '42px',  letterSpacing: '-0.02em', fontWeight: '800' }],
+        'headline-md':  ['24px', { lineHeight: '32px',  fontWeight: '700' }],
+        'headline-sm':  ['20px', { lineHeight: '28px',  fontWeight: '700' }],
+        'headline-lg-mobile': ['30px', { lineHeight: '38px', fontWeight: '800' }],
         'body-lg':  ['18px', { lineHeight: '28px', fontWeight: '400' }],
         'body-md':  ['16px', { lineHeight: '24px', fontWeight: '400' }],
         'body-sm':  ['14px', { lineHeight: '20px', fontWeight: '400' }],
-        'label-lg': ['14px', { lineHeight: '20px', fontWeight: '600' }],
-        'label-sm': ['12px', { lineHeight: '16px', fontWeight: '500' }],
+        'label-lg': ['14px', { lineHeight: '20px', fontWeight: '700' }],
+        'label-sm': ['11px', { lineHeight: '16px', fontWeight: '700' }],
       },
       colors: {
-        // ── Stitch Design System Palette ────────────────────────────────────────
-        primary:               '#051227',   // deep navy
-        'primary-container':   '#1b273d',   // navy card surface
-        'on-primary':          '#ffffff',
-        'on-primary-container':'#828ea9',
-        'primary-fixed':       '#d7e2ff',
-        'primary-fixed-dim':   '#bac7e3',
-        'on-primary-fixed':    '#0f1b31',
-        'on-primary-fixed-variant': '#3b475e',
-        'inverse-primary':     '#bac7e3',
+        // ── Aurora Violet + Neon Lime — bold, high-contrast identity ─────────────
+        primary:               '#0E0A1F',   // near-black violet
+        'primary-container':   '#1D1638',   // elevated violet surface
+        'on-primary':          '#F5F3FF',
+        'on-primary-container':'#B3A6E0',
+        'primary-fixed':       '#E4DBFF',
+        'primary-fixed-dim':   '#C6B8F0',
+        'on-primary-fixed':    '#160F2E',
+        'on-primary-fixed-variant': '#4A3D75',
+        'inverse-primary':     '#C6B8F0',
 
-        secondary:                 '#835400',
-        'secondary-container':     '#fcab28',   // gold accent
-        'on-secondary':            '#ffffff',
-        'on-secondary-container':  '#694300',
-        'secondary-fixed':         '#ffddb5',
-        'secondary-fixed-dim':     '#ffb957',
-        'on-secondary-fixed':      '#2a1800',
-        'on-secondary-fixed-variant': '#643f00',
+        secondary:                 '#3D4D00',
+        'secondary-container':     '#C6FF3D',   // electric lime accent
+        'on-secondary':            '#101B00',
+        'on-secondary-container':  '#2E3A00',
+        'secondary-fixed':         '#E3FFA0',
+        'secondary-fixed-dim':     '#D4FF6E',
+        'on-secondary-fixed':      '#1C2400',
+        'on-secondary-fixed-variant': '#374600',
 
-        tertiary:                 '#00112f',
-        'tertiary-container':     '#002556',
+        tertiary:                 '#001B3D',
+        'tertiary-container':     '#0A3A7A',
         'on-tertiary':            '#ffffff',
-        'on-tertiary-container':  '#5a8de8',
-        'tertiary-fixed':         '#d8e2ff',
-        'tertiary-fixed-dim':     '#acc7ff',
-        'on-tertiary-fixed':      '#001a40',
+        'on-tertiary-container':  '#7CC7FF',
+        'tertiary-fixed':         '#D3E4FF',
+        'tertiary-fixed-dim':     '#A9CBFF',
+        'on-tertiary-fixed':      '#001A40',
         'on-tertiary-fixed-variant': '#004492',
 
         // ── Surfaces ─────────────────────────────────────────────────────────────
-        background:                 '#f7f9fc',
-        'on-background':            '#191c1e',
-        surface:                    '#f7f9fc',
-        'on-surface':               '#191c1e',
-        'surface-variant':          '#e0e3e6',
-        'on-surface-variant':       '#45474d',
-        'surface-bright':           '#f7f9fc',
-        'surface-dim':              '#d8dadd',
+        background:                 '#FAF9FF',
+        'on-background':            '#14101F',
+        surface:                    '#FAF9FF',
+        'on-surface':               '#14101F',
+        'surface-variant':          '#E4E0F0',
+        'on-surface-variant':       '#4A4460',
+        'surface-bright':           '#FAF9FF',
+        'surface-dim':              '#DAD5E8',
         'surface-container-lowest': '#ffffff',
-        'surface-container-low':    '#f2f4f7',
-        'surface-container':        '#eceef1',
-        'surface-container-high':   '#e6e8eb',
-        'surface-container-highest':'#e0e3e6',
-        'inverse-surface':          '#2d3133',
-        'inverse-on-surface':       '#eff1f4',
-        'surface-tint':             '#535e77',
+        'surface-container-low':    '#F3F0FA',
+        'surface-container':        '#ECE7F7',
+        'surface-container-high':   '#E4DEF2',
+        'surface-container-highest':'#DAD5E8',
+        'inverse-surface':          '#2B2540',
+        'inverse-on-surface':       '#F2EFFA',
+        'surface-tint':             '#6B5FA8',
 
         // ── Utility ──────────────────────────────────────────────────────────────
-        outline:          '#75777e',
-        'outline-variant':'#c5c6cd',
+        outline:          '#7A7391',
+        'outline-variant':'#CBC5DE',
         error:            '#ba1a1a',
         'on-error':       '#ffffff',
         'error-container':'#ffdad6',
         'on-error-container': '#93000a',
 
         // ── Brand-specific ────────────────────────────────────────────────────────
-        'auction-live':     '#E91E63',   // hot pink – live badge
-        'auction-upcoming': '#3B71CA',   // blue – upcoming
-        'gold-service':     '#E9D758',   // gold premium
-        'success-green':    '#2E7D32',   // settled/success
+        'auction-live':     '#FF3D7F',   // magenta – live badge
+        'auction-upcoming': '#5B8CFF',   // electric blue – upcoming
+        'gold-service':     '#FFD23D',   // amber premium
+        'success-green':    '#22C55E',   // settled/success
 
-        // ── Legacy aliases kept so old components don't break until refactored ────
+        // ── Legacy aliases kept so old components don't break ────────────────────
         cream: {
           50:  '#ffffff',
-          100: '#f7f9fc',
-          200: '#eceef1',
-          300: '#c5c6cd',
-          400: '#75777e',
+          100: '#FAF9FF',
+          200: '#ECE7F7',
+          300: '#CBC5DE',
+          400: '#7A7391',
         },
       },
       maxWidth: {
@@ -107,20 +107,22 @@ export default {
         'stack-sm':        '0.5rem',
         'stack-md':        '1rem',
         'stack-lg':        '2rem',
-        'section-padding': '5rem',
+        'section-padding': '6rem',
       },
       borderRadius: {
         DEFAULT: '0.25rem',
         sm:   '0.125rem',
         md:   '0.375rem',
-        lg:   '0.5rem',
-        xl:   '0.75rem',
-        '2xl':'1rem',
+        lg:   '0.75rem',
+        xl:   '1.25rem',
+        '2xl':'1.75rem',
         full: '9999px',
       },
       boxShadow: {
-        'card-hover': '0px 4px 20px rgba(5, 18, 39, 0.12)',
-        'auction':    '0 2px 8px rgba(5, 18, 39, 0.08)',
+        'card-hover': '0px 12px 32px rgba(14, 10, 31, 0.16)',
+        'auction':    '0 2px 12px rgba(14, 10, 31, 0.08)',
+        'neon':       '0 0 0 1px rgba(198,255,61,0.4), 0 0 24px rgba(198,255,61,0.25)',
+        'neon-lg':    '0 0 0 1px rgba(198,255,61,0.5), 0 0 48px rgba(198,255,61,0.35)',
       },
     },
   },
