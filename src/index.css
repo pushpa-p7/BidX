@@ -13,7 +13,7 @@
 
   body {
     @apply bg-background text-on-surface font-sans antialiased
-           dark:bg-[#030914] dark:text-slate-100;
+           dark:bg-[#05030D] dark:text-slate-100;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -21,26 +21,25 @@
 
 @layer components {
 
-  /* ── Primary CTA — gold "Bid Now" button ─────────────────────────── */
+  /* ── Primary CTA — neon lime "Bid Now" button ────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-lg
-           bg-secondary-container text-on-secondary-fixed
-           px-6 py-3 text-label-lg font-semibold
-           transition-all duration-200
-           hover:brightness-105 hover:shadow-md active:scale-95
-           disabled:cursor-not-allowed disabled:opacity-50
-           dark:text-primary dark:hover:brightness-110;
+    @apply inline-flex items-center gap-2 rounded-full
+           bg-secondary-container text-on-secondary
+           px-6 py-3 text-label-lg font-bold
+           transition-all duration-200 shadow-neon
+           hover:brightness-105 hover:shadow-neon-lg hover:-translate-y-0.5 active:scale-95
+           disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:translate-y-0;
   }
 
   /* ── Ghost / outline button ────────────────────────────────────────── */
   .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-lg
+    @apply inline-flex items-center gap-2 rounded-full
            border border-outline-variant bg-surface-container-lowest
            px-4 py-3 text-body-sm font-semibold text-on-surface
            transition-all duration-200
-           hover:bg-surface-container hover:border-outline
+           hover:bg-surface-container hover:border-secondary-container
            disabled:cursor-not-allowed disabled:opacity-50
-           dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:bg-slate-800;
+           dark:bg-slate-900 dark:border-slate-800 dark:text-slate-300 dark:hover:border-secondary-container;
   }
 
   /* ── Stable height helper ──────────────────────────────────────────── */
@@ -93,19 +92,31 @@
     @apply h-2.5 w-2.5 rounded-full flex-shrink-0;
   }
 
-  .status-dot.live    { @apply bg-auction-live shadow-[0_0_8px_rgba(233,30,99,0.6)]; }
+  .status-dot.live    { @apply bg-auction-live shadow-[0_0_8px_rgba(255,61,127,0.6)]; }
   .status-dot.ended   { @apply bg-outline; }
   .status-dot.settled { @apply bg-success-green; }
 
   /* ── Auction card hover effect ─────────────────────────────────────── */
   .auction-card-hover {
-    @apply transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5;
+    @apply transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
   }
 
   /* ── Glass (legacy, keep for compatibility) ────────────────────────── */
   .glass {
     @apply rounded-xl border border-outline-variant bg-surface-container-lowest/80 backdrop-blur-sm
            dark:bg-slate-900/80 dark:border-slate-800;
+  }
+
+  /* ── New: glass panel used across the redesigned shell ───────────────── */
+  .glass-panel {
+    @apply rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+  }
+
+  /* ── New: pill badge with dot ────────────────────────────────────────── */
+  .pill-badge {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full
+           text-label-sm uppercase tracking-wider font-bold
+           border border-secondary-container/30 bg-secondary-container/10 text-secondary-container;
   }
 }
 
@@ -126,13 +137,22 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-16px, 12px); }
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 8px rgba(212, 168, 83, 0.15); }
-  50% { box-shadow: 0 0 20px rgba(212, 168, 83, 0.35); }
+  0%, 100% { box-shadow: 0 0 12px rgba(198, 255, 61, 0.18); }
+  50% { box-shadow: 0 0 36px rgba(198, 255, 61, 0.4); }
+}
+
+@keyframes border-spin {
+  to { --border-angle: 360deg; }
 }
 
 .animate-fade-in {
@@ -144,37 +164,66 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent 33%, rgba(212,168,83,0.08) 50%, transparent 66%);
+  background: linear-gradient(90deg, transparent 33%, rgba(198,255,61,0.10) 50%, transparent 66%);
   background-size: 200% 100%;
   animation: shimmer 2.5s ease-in-out infinite;
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
 }
 
 .animate-glow-pulse {
-  animation: glow-pulse 2s ease-in-out infinite;
+  animation: glow-pulse 2.4s ease-in-out infinite;
 }
 
-/* ── Premium gradient text ────────────────────────────────────────────── */
-.gradient-text-gold {
-  background: linear-gradient(135deg, #E8C06A 0%, #D4A853 50%, #C49338 100%);
+/* ── Premium gradient text (renamed, used for headline accents) ───────── */
+.gradient-text {
+  background: linear-gradient(135deg, #E3FFA0 0%, #C6FF3D 45%, #7CC7FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ── Hero section enhanced background ─────────────────────────────────── */
+/* ── Hero section enhanced background: fine dot-grid + noise ──────────── */
 .hero-grid-bg {
   background-image:
-    linear-gradient(rgba(212,168,83,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212,168,83,0.03) 1px, transparent 1px);
-  background-size: 64px 64px;
+    radial-gradient(rgba(198,255,61,0.10) 1px, transparent 1px);
+  background-size: 28px 28px;
 }
 
 .dark .hero-grid-bg {
   background-image:
-    linear-gradient(rgba(212,168,83,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212,168,83,0.04) 1px, transparent 1px);
+    radial-gradient(rgba(198,255,61,0.14) 1px, transparent 1px);
+}
+
+/* ── New: mesh gradient backdrop for the shell ─────────────────────────── */
+.mesh-bg {
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(198,255,61,0.10), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 90% 20%, rgba(91,140,255,0.12), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255,61,127,0.08), transparent 60%);
+}
+
+/* ── New: subtle rotating conic-gradient border for the manager console ── */
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from 0deg, #C6FF3D, #7CC7FF, #FF3D7F, #C6FF3D);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.55;
+  pointer-events: none;
 }
