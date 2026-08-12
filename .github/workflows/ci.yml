@@ -1,0 +1,72 @@
+name: Soroban CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: 1.94.0
+          targets: wasm32-unknown-unknown, wasm32v1-none
+          profile: minimal
+
+      - name: Cache Cargo
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Run Contract Tests
+        run: cargo test -p auction-contract
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: 1.94.0
+          targets: wasm32-unknown-unknown, wasm32v1-none
+          profile: minimal
+
+      - name: Install Stellar CLI
+        uses: stellar/stellar-cli@v25.2.0
+
+      - name: Build Contract (WASM)
+        run: stellar contract build --package auction-contract
+
+      - name: Verify WASM exists
+        run: ls -l target/wasm32v1-none/release/auction_contract.wasm
+
+  frontend:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install and Build Frontend
+        run: |
+          npm ci
+          npm run build
