@@ -1,17 +1,139 @@
-# BidX
+<div align="center">
 
-[![Stellar](https://img.shields.io/badge/Network-Stellar-blue)](https://stellar.org)
-[![Soroban](https://img.shields.io/badge/Standard-Soroban-green)](https://soroban.stellar.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI/CD Status](https://img.shields.io/github/actions/workflow/status/ankush-shaw/BidX/ci.yml?branch=main&label=Build%20%26%20Test)](https://github.com/ankush-shaw/BidX/actions)
+# 🔨 BidX
+### Decentralized On-Chain Project Bidding & Auction Platform
 
-BidX is a decentralized, on-chain project bidding and auction platform built on **Stellar Soroban**. Project managers list opportunities directly on-chain, and public bidders submit trustless XLM-backed bids in real time. The smart contract escrows the active highest bid, instantly refunds the previous bidder on every outbid, and settles the winning bid to the seller once the auction closes.
+**Built on Stellar / Soroban** — trustless XLM-backed bidding with instant escrow refunds and automatic settlement.
+
+[![CI/CD Status](https://github.com/ankush-shaw/BidX/actions/workflows/ci.yml/badge.svg)](https://github.com/ankush-shaw/BidX/actions/workflows/ci.yml)
+![React](https://img.shields.io/badge/React-TypeScript-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-Build_Tool-646CFF?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?logo=tailwindcss&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-Soroban_SDK-orange?logo=rust)
+![Stellar](https://img.shields.io/badge/Stellar-Testnet-7D00FF?logo=stellar)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+[🌐 Live Demo](https://onchain-auction.vercel.app/) · [🎥 Demo Video](https://drive.google.com/file/d/14AbMnbf_OQNQ7jH9q6hOr0vyzt52T1pG/view?usp=sharing) · [📊 User Feedback](https://docs.google.com/spreadsheets/d/1TpOJGbwcuay3qbAOZRUt4OgfbKvadTW553FGRyVml2Y/edit?usp=sharing)
+
+</div>
+
+---
+
+## 📑 Table of Contents
+
+- [Overview](#-overview)
+- [Live Demo](#-live-demo)
+- [Architecture](#️-architecture)
+- [How a Bid Is Placed (Contract Flow)](#-how-a-bid-is-placed-contract-flow)
+- [Platform Screenshots](#-platform-screenshots)
+- [CI/CD Pipeline Status](#-cicd-pipeline-status)
+- [Smart Contract Overview](#️-smart-contract-overview)
+- [Contract Details](#-contract-details)
+- [Features](#️-features)
+- [Tech Stack](#-tech-stack)
+- [How to Run Locally](#-how-to-run-locally)
+- [Running Tests](#-running-tests)
+- [Deployment](#-deployment)
+- [Project Structure](#-project-structure)
+- [User Onboarding & Testnet Validation](#-user-onboarding--testnet-validation)
+- [Useful Resources](#-useful-resources)
+- [License](#-license)
+- [Future Evolution Plan](#-future-evolution-plan)
+
+## LINK-
+
+https://stellar.expert/explorer/testnet/contract/CDKJLCZDSBITX2LSBEKQNAW45MQEWAGA3XNMDF7JPDWFH6UAPU5T6MCP
+
+<img width="1901" height="866" alt="image" src="https://github.com/user-attachments/assets/a85d033e-d459-47ce-ad8b-1ce5895465ad" />
+
+---
+
+## 🧬 Overview
+
+**BidX** is a decentralized, on-chain project bidding and auction platform built on the **Stellar/Soroban** blockchain. Project managers list opportunities directly to the chain, and public bidders submit trustless XLM-backed bids in real time — no intermediary ever holds the funds.
+
+At its core, BidX solves a real trust problem in traditional bidding: sellers can't quietly favor a bidder, and bidders can't be left waiting on a manual refund after being outbid. The Soroban contract escrows every active bid, refunds the previous bidder synchronously the moment a higher bid lands, and settles the winning bid to the seller automatically once the auction closes — all verifiable on-chain.
+
+---
 
 ## 🌐 Live Demo
 
-- **Live Demo URL:** [https://onchain-auction.vercel.app/](https://onchain-auction.vercel.app/)
-- **Demo Video:** [Watch on Google Drive](https://drive.google.com/file/d/14AbMnbf_OQNQ7jH9q6hOr0vyzt52T1pG/view?usp=sharing)
-- **Pitch Deck:** [View Presentation](https://docs.google.com/presentation/d/1b2FdjQvPswGlY00AivnkJaLB3KKDDh-A/edit?usp=sharing&ouid=104656030980064295821&rtpof=true&sd=true)
+| Resource | Link |
+|---|---|
+| 🚀 Live App | [onchain-auction.vercel.app](https://onchain-auction.vercel.app/) |
+| 🎥 Demo Video | [Watch on Google Drive](https://drive.google.com/file/d/14AbMnbf_OQNQ7jH9q6hOr0vyzt52T1pG/view?usp=sharing) |
+| 📽️ Pitch Deck | [View Presentation](https://docs.google.com/presentation/d/1b2FdjQvPswGlY00AivnkJaLB3KKDDh-A/edit?usp=sharing&ouid=104656030980064295821&rtpof=true&sd=true) |
+| ⚙️ CI Pipeline | [GitHub Actions](https://github.com/ankush-shaw/BidX/actions) |
+| 📊 User Feedback | [Visit Link](https://docs.google.com/spreadsheets/d/1TpOJGbwcuay3qbAOZRUt4OgfbKvadTW553FGRyVml2Y/edit?usp=sharing) |
+
+---
+
+## 🏗️ Architecture
+
+BidX is split into three cooperating layers: a **React/Vite frontend** that managers and bidders interact with, a **multi-wallet signing layer**, and an **on-chain Soroban layer** that governs auction state, escrow, and settlement.
+
+```mermaid
+graph TB
+    subgraph Client["👤 Client Layer"]
+        A["Project Manager"]
+        B["Bidder"]
+        A --> UI["React + TypeScript Frontend<br/>Vite + Tailwind CSS"]
+        B --> UI
+    end
+
+    subgraph WalletLayer["🔐 Wallet Layer"]
+        UI --> WC["Multi-Wallet Connector"]
+        WC --> FW["Freighter"]
+        WC --> AL["Albedo"]
+        WC --> XB["xBull"]
+        WC --> HN["Hana"]
+    end
+
+    subgraph Chain["⛓️ Stellar / Soroban Blockchain (Testnet)"]
+        WC --> AC["Auction Smart Contract"]
+        AC --> Create["create_auction()"]
+        AC --> Bid["place_bid()<br/>Escrow + Auto-Refund"]
+        AC --> Settle["settle_auction()"]
+        AC -->|"Locks / Refunds / Pays out"| SAC["Native XLM SAC Token Contract"]
+    end
+
+    AC -.->|"Real-time Events"| UI
+
+    style Chain fill:#1a1a2e,color:#fff,stroke:#7D00FF,stroke-width:2px
+    style WalletLayer fill:#16213e,color:#fff,stroke:#7D00FF
+    style Client fill:#0f3460,color:#fff,stroke:#61DAFB
+```
+
+**Layer breakdown:**
+
+- **Client Layer** — Managers and bidders interact through a responsive React + TypeScript interface built with Vite, Tailwind CSS, and Framer Motion.
+- **Wallet Layer** — A unified multi-wallet connector supports Freighter, Albedo, xBull, and Hana, each signing transactions locally so private keys never leave the user's device.
+- **On-Chain Layer (Soroban)** — The Auction Contract handles listing creation, bid escrow, anti-snipe extensions, and final settlement, with every state change verifiable on Stellar.Expert.
+
+---
+
+## 🔄 How a Bid Is Placed (Contract Flow)
+
+```mermaid
+sequenceDiagram
+    participant B as 🧑 Bidder
+    participant UI as 💻 Frontend (React)
+    participant W as 🔐 Wallet (Freighter/Albedo/xBull/Hana)
+    participant AC as 📜 Auction Contract
+    participant SAC as 🪙 Native XLM Token
+
+    B->>UI: Enter bid amount
+    UI->>W: Request transaction signature
+    W->>AC: place_bid(bidder, id, amount)
+    AC->>SAC: Lock new bid in escrow
+    AC->>SAC: Refund previous bidder synchronously
+    AC-->>UI: Emit "BidPlaced" event
+    UI-->>B: Show confirmation + updated highest bid
+```
+
+The main contract never trusts an external service to issue refunds — the escrow release and the new lock happen in the same transaction block, on-chain.
+
+---
 
 ## 📸 Platform Screenshots
 
@@ -28,21 +150,21 @@ BidX is a decentralized, on-chain project bidding and auction platform built on 
 
 *The application is fully responsive and supports secure, trustless bidding across all devices.*
 
+---
+
 ## ✅ CI/CD Pipeline Status
 
-[![CI/CD Status](https://img.shields.io/github/actions/workflow/status/ankush-shaw/BidX/ci.yml?branch=main&label=Build%20%26%20Test)](https://github.com/ankush-shaw/BidX/actions)
+[![CI/CD Status](https://github.com/ankush-shaw/BidX/actions/workflows/ci.yml/badge.svg)](https://github.com/ankush-shaw/BidX/actions/workflows/ci.yml)
 
 **Pipeline runs:**
-- Node dependency installation
-- Frontend build verification (Vite + TypeScript)
-- Rust Soroban contract compilation & unit tests
-- Automated on every push to `main`
+- ✅ Node dependency installation
+- ✅ Frontend build verification (Vite + TypeScript)
+- ✅ Rust Soroban contract compilation & unit tests
+- ✅ Automated on push to `main`
 
-## 🧪 Smart Contract Testing
+### Passing Smart Contract Tests
 
-The Soroban auction contract includes unit tests covering auction creation, bidding limits, refunds, escrow, and final settlement.
-
-```
+```text
 running 3 tests
 test test::test_create_auction ... ok
 test test::test_place_bid_refunds_previous_bidder ... ok
@@ -51,24 +173,27 @@ test test::test_settle_auction_transfers_winning_bid_to_seller ... ok
 test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
 ```
 
-Run the suite locally:
+Run tests locally:
 ```bash
 cargo test -p auction-contract
 ```
 
 <img width="897" height="160" alt="Test suite output" src="https://github.com/user-attachments/assets/82a3f21c-063b-4a28-b302-b9e65b7ecd61" />
 
+---
+
 ## 🏗️ Smart Contract Overview
 
-### Auction Contract
+### 📜 Auction Contract
 
-**Features:**
-- Auction creation with configurable duration and optional buy-it-now price
-- Escrowed bidding — funds are held via the token client, not trusted balances
-- Automatic, synchronous refund of the outbid party in the same transaction
-- Immutable seller lock once a bid exists (no cancel-and-relist)
-- Anti-snipe extension window with a per-auction extension cap
-- Platform-fee settlement to a configurable treasury address on close
+| Feature | Description |
+|---|---|
+| Auction creation | Configurable duration, optional buy-it-now price |
+| Escrowed bidding | Funds held via token client, not trusted balances |
+| Auto-refund | Previous bidder refunded synchronously on outbid |
+| Seller lock | Immutable seller once a bid exists (no cancel-and-relist) |
+| Anti-snipe guard | Extension window with a per-auction extension cap |
+| Settlement | Winning bid transferred to seller minus platform fee |
 
 | Function | Arguments | Description |
 |:---|:---|:---|
@@ -80,97 +205,48 @@ cargo test -p auction-contract
 | `place_bid` | `bidder: Address`, `id: u32`, `amount: i128` | Submits a new highest bid. Locks new funds in escrow and refunds the previous bidder. |
 | `settle_auction` | `id: u32` | Finalizes the auction (must be ended). Transfers the locked highest bid to the seller, minus any platform fee. |
 
+---
+
 ## 📋 Contract Details
 
-(Deployed on Stellar Testnet)
+*(Deployed on Soroban Testnet)*
 
-```
-Contract ID:  CDKJLCZDSBITX2LSBEKQNAW45MQEWAGA3XNMDF7JPDWFH6UAPU5T6MCP
-Bidding Token: Native XLM
+```text
+Auction Contract:  CDKJLCZDSBITX2LSBEKQNAW45MQEWAGA3XNMDF7JPDWFH6UAPU5T6MCP
+Bidding Token:     Native XLM
 ```
 
 ### 🔍 View on Explorer
 
 Inspect verified on-chain transactions and call history on the Stellar Development Foundation Testnet Explorer:
-[Stellar.Expert — CDKJLC...5T6MCP](https://stellar.expert/explorer/testnet/contract/CDKJLCZDSBITX2LSBEKQNAW45MQEWAGA3XNMDF7JPDWFH6UAPU5T6MCP)
+[Stellar.Expert - CDKJLC...5T6MCP](https://stellar.expert/explorer/testnet/contract/CDKJLCZDSBITX2LSBEKQNAW45MQEWAGA3XNMDF7JPDWFH6UAPU5T6MCP)
 
-## 👥 User Onboarding & Testnet Validation
-
-Real testnet users interacted with the deployed contract and provided structured feedback that shaped nine completed development iterations — covering theme accessibility, multi-wallet support, mobile responsiveness, auto-refunding safety, mainnet readiness, board search/filtering, live analytics, countdown urgency, and escrowed bidding with anti-snipe protection.
-
-- **📋 Feedback Form:** [Fill out the Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfa45WCSx3aEYmMvyQZ4n-ZnO_2xJQUBZ9nzoFQ_b8zdR9UPQ/viewform?usp=sharing&ouid=104656030980064295821)
-- **📊 Live Responses Database:** [View Responses Spreadsheet](https://docs.google.com/spreadsheets/d/1TpOJGbwcuay3qbAOZRUt4OgfbKvadTW553FGRyVml2Y/edit?usp=sharing)
-- **📜 Full Iteration Log:** [View Git Commit History](https://github.com/ankush-shaw/BidX/commits/main)
+---
 
 ## 🛠️ Features
 
-- **Multi-Wallet Authentication:** Native integration with **Freighter**, **Albedo**, **xBull**, and **Hana** wallets for secure signing and balance sync.
-- **Bidding Board:** Live auction listings with fuzzy search, status filters (Live, Ended, Settled), and price/time sorting.
-- **Manager Console:** Dedicated dashboard for creating and tracking project listings.
-- **Live Analytics:** Expandable per-auction SVG price chart with start/current price and auction-window progress.
-- **Countdown Urgency:** Live countdown badges that escalate from neutral → amber → pulsing red as an auction nears its close.
-- **Escrowed Settlement:** On-chain escrow with automatic outbid refunds and capped anti-snipe extensions.
-- **Testnet/Mainnet Toggle:** App-level network switch wired through wallets, RPC calls, and explorer links.
-- **Cream & Dark Themes:** Low-contrast cream palette for light mode, full dark mode support.
-- **Mobile Responsive:** Fully responsive layout with address truncation and hover tooltips.
+- 🔑 **Multi-Wallet Authentication** — Native integration with **Freighter**, **Albedo**, **xBull**, and **Hana** for secure signing and balance sync.
+- 📋 **Manager Console** — Dedicated dashboard for creating and tracking project listings.
+- 🔎 **Bidding Board Explorer** — Fuzzy search, status filters (Live, Ended, Settled), and price/time sorting, plus a stats banner for TVL and pending settlements.
+- 📈 **Live Analytics** — Expandable per-auction SVG price chart with start/current price and auction-window progress.
+- ⏱️ **Countdown Urgency** — Live countdown badges that escalate from neutral → amber → pulsing red as an auction nears close.
+- 🔒 **Escrowed Settlement** — On-chain escrow with automatic outbid refunds and capped anti-snipe extensions.
+- 🔀 **Testnet/Mainnet Toggle** — App-level network switch wired through wallets, RPC calls, and explorer links.
+- 🎨 **Cream & Dark Themes** — Low-contrast cream palette for light mode, full dark mode support.
+- 📱 **Mobile Responsive** — Fully responsive layout with address truncation and hover tooltips.
+
+---
 
 ## 💻 Tech Stack
 
 | Layer | Technology |
 |---|---|
 | **Frontend** | React (TypeScript), Vite, Tailwind CSS, Framer Motion, Lucide Icons |
-| **Blockchain** | Stellar Testnet, Soroban Smart Contracts |
-| **Smart Contract** | Rust (WASM target), Soroban Contract SDK |
-| **Wallets** | Freighter API, Albedo Intent API, xBull SDK, Hana Wallet |
+| **Web3** | Freighter API, Albedo Intent API, xBull SDK, Hana Wallet |
+| **Smart Contracts** | Rust / Soroban Contract SDK (WASM target) |
 | **CI/CD** | GitHub Actions (automated compilation & test verification) |
 
-## 📐 System Architecture
-
-```mermaid
-graph TD
-    %% Styling
-    classDef frontend fill:#082f49,stroke:#0284c7,stroke-width:2px,color:#fff;
-    classDef blockchain fill:#022c22,stroke:#059669,stroke-width:2px,color:#fff;
-    classDef wallet fill:#3b0764,stroke:#a855f7,stroke-width:2px,color:#fff;
-
-    %% Nodes
-    subgraph Frontend [Client Application - React/TS]
-        App[App.tsx Dashboard]:::frontend
-        Panel[ManagerPanel.tsx]:::frontend
-        Card[AuctionCard.tsx]:::frontend
-        SorobanService[soroban.ts Service Layer]:::frontend
-    end
-
-    subgraph WalletLayer [User Wallets]
-        Wallets{Multi-Wallet Connector}:::wallet
-        Freighter[Freighter Wallet]:::wallet
-        Albedo[Albedo Wallet]:::wallet
-        XBull[xBull Wallet]:::wallet
-        Hana[Hana Wallet]:::wallet
-    end
-
-    subgraph OnChain [Stellar Testnet Network]
-        RPC[Soroban RPC Node]:::blockchain
-        Contract[Soroban Auction Smart Contract]:::blockchain
-        SAC[Native XLM SAC Token Contract]:::blockchain
-    end
-
-    %% Flow/Connections
-    App --> Panel & Card
-    Panel -- "1. Create Listing" --> SorobanService
-    Card -- "2. Submit Bid / Settle" --> SorobanService
-
-    SorobanService --> Wallets
-    Wallets --> Freighter & Albedo & XBull & Hana
-
-    Wallets -- "3. Sign Transaction XDR" --> SorobanService
-    SorobanService -- "4. Submit Signed XDR" --> RPC
-    RPC -- "5. Invoke Contract Call" --> Contract
-
-    %% Contract Logic Flow
-    Contract -- "a. Lock current bid in escrow" --> SAC
-    Contract -- "c. Settle winner and transfer funds" --> SAC
-```
+---
 
 ## 📦 How to Run Locally
 
@@ -179,43 +255,48 @@ graph TD
 - [Rust & Cargo](https://www.rust-lang.org/) with `wasm32-unknown-unknown` target
 - [Stellar CLI](https://developers.stellar.org/docs/build/smart-contracts/getting-started/setup)
 
-1. Clone the repository:
-```bash
-git clone https://github.com/ankush-shaw/BidX.git
-cd BidX
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ankush-shaw/BidX.git
+   cd BidX
+   ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-3. Create a `.env` file in the project root:
-```env
-VITE_AUCTION_CONTRACT_ID=YOUR_DEPLOYED_CONTRACT_ID
-VITE_STELLAR_RPC_URL=https://soroban-testnet.stellar.org
-VITE_STELLAR_HORIZON_URL=https://horizon-testnet.stellar.org
-VITE_NATIVE_TOKEN_CONTRACT_ID=CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
+3. **Create a `.env` file** in the project root:
+   ```env
+   VITE_AUCTION_CONTRACT_ID=YOUR_DEPLOYED_CONTRACT_ID
+   VITE_STELLAR_RPC_URL=https://soroban-testnet.stellar.org
+   VITE_STELLAR_HORIZON_URL=https://horizon-testnet.stellar.org
+   VITE_NATIVE_TOKEN_CONTRACT_ID=CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
 
-VITE_MAINNET_AUCTION_CONTRACT_ID=YOUR_MAINNET_DEPLOYED_CONTRACT_ID
-VITE_STELLAR_MAINNET_RPC_URL=https://mainnet.sorobanrpc.com
-VITE_STELLAR_MAINNET_HORIZON_URL=https://horizon.stellar.org
-VITE_MAINNET_NATIVE_TOKEN_CONTRACT_ID=YOUR_MAINNET_NATIVE_XLM_CONTRACT_ID
-```
-The header toggle switches the frontend between Testnet and Mainnet. Mainnet stays in preview mode until its contract ID and native XLM token contract ID are configured.
+   VITE_MAINNET_AUCTION_CONTRACT_ID=YOUR_MAINNET_DEPLOYED_CONTRACT_ID
+   VITE_STELLAR_MAINNET_RPC_URL=https://mainnet.sorobanrpc.com
+   VITE_STELLAR_MAINNET_HORIZON_URL=https://horizon.stellar.org
+   VITE_MAINNET_NATIVE_TOKEN_CONTRACT_ID=YOUR_MAINNET_NATIVE_XLM_CONTRACT_ID
+   ```
+   The header toggle switches the frontend between Testnet and Mainnet. Mainnet stays in preview mode until its contract ID and native XLM token contract ID are configured.
 
-4. Run the development server:
-```bash
-npm run dev
-```
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-5. Access at `http://localhost:5173`
+5. **Access at** `http://localhost:5173`
+
+---
 
 ## 🧪 Running Tests
 
+To run the automated Rust smart contract testing suite:
 ```bash
 cargo test -p auction-contract
 ```
+
+---
 
 ## 🚀 Deployment
 
@@ -226,23 +307,25 @@ cargo test -p auction-contract
 
 ### Smart Contract
 1. Build the WASM contract:
-```bash
-stellar contract build --package auction-contract
-```
+   ```bash
+   stellar contract build --package auction-contract
+   ```
 
-2. Deploy and seed sample listings in one step:
-```bash
-npm run deploy:contract
-```
+2. Deploy, instantiate, and seed sample listings in one command:
+   ```bash
+   npm run deploy:contract
+   ```
 
-Skip seeding with:
-```bash
-# Windows
-$env:SKIP_SEED="1"; npm run deploy:contract
+   Skip seeding with:
+   ```bash
+   # Windows
+   $env:SKIP_SEED="1"; npm run deploy:contract
 
-# Linux / macOS
-SKIP_SEED=1 npm run deploy:contract
-```
+   # Linux / macOS
+   SKIP_SEED=1 npm run deploy:contract
+   ```
+
+---
 
 ## 📚 Project Structure
 
@@ -276,6 +359,18 @@ SKIP_SEED=1 npm run deploy:contract
 └── README.md                  # Project documentation
 ```
 
+---
+
+## 👥 User Onboarding & Testnet Validation
+
+Real testnet users interacted directly with the deployed Soroban contract, and their structured feedback drove nine completed development iterations — covering theme accessibility, multi-wallet support, mobile responsiveness, auto-refunding safety, mainnet readiness, board search/filtering, live analytics, countdown urgency, and escrowed bidding with anti-snipe protection.
+
+- **📋 Feedback Form:** [Fill out the Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfa45WCSx3aEYmMvyQZ4n-ZnO_2xJQUBZ9nzoFQ_b8zdR9UPQ/viewform?usp=sharing&ouid=104656030980064295821)
+- **📊 Live Responses Database:** [View Responses Spreadsheet](https://docs.google.com/spreadsheets/d/1TpOJGbwcuay3qbAOZRUt4OgfbKvadTW553FGRyVml2Y/edit?usp=sharing)
+- **📜 Full Iteration Log:** [View Git Commit History](https://github.com/ankush-shaw/BidX/commits/main)
+
+---
+
 ## 🔗 Useful Resources
 
 - [Stellar Documentation](https://developers.stellar.org/)
@@ -283,14 +378,24 @@ SKIP_SEED=1 npm run deploy:contract
 - [Vite Documentation](https://vitejs.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
-## 🎯 Future Evolution Plan
-
-| Priority | Improvement | Driven By |
-|:---|:---|:---|
-| 🔴 High | Automated email/browser alerts when a user gets outbid | "I missed the close because I didn't know I was outbid" |
-| 🟡 Medium | Support custom SAC tokens instead of only native XLM | "We want to hold auctions using our custom project tokens" |
-| 🟢 Low | Visual bid history charts showing bidding velocity over time | "Would love to see a chart of price updates" |
+---
 
 ## 📄 License
 
-Released under the [MIT License](https://opensource.org/licenses/MIT).
+MIT
+
+---
+
+## 🎯 Future Evolution Plan
+
+- [ ] Automated email/browser alerts when a user gets outbid
+- [ ] Support for custom SAC (Stellar Asset Contract) tokens instead of only native XLM
+- [ ] Visual bid history charts showing bidding velocity over time
+
+---
+
+<div align="center">
+
+**Built with ❤️ on Stellar/Soroban**
+
+</div>
