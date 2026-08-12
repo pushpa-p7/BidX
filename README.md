@@ -5,7 +5,7 @@
 
 **Built on Stellar / Soroban** — trustless XLM-backed bidding with instant escrow refunds and automatic settlement.
 
-[![CI/CD Status](https://github.com/ankush-shaw/BidX/actions/workflows/ci.yml/badge.svg)](https://github.com/ankush-shaw/BidX/actions/workflows/ci.yml)
+[![CI/CD Status](https://github.com/pushpa-p7/BidX/actions/workflows/ci.yml/badge.svg)](https://github.com/pushpa-p7/BidX/actions/workflows/ci.yml)
 ![React](https://img.shields.io/badge/React-TypeScript-61DAFB?logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-Build_Tool-646CFF?logo=vite&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?logo=tailwindcss&logoColor=white)
