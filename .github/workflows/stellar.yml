@@ -1,0 +1,29 @@
+name: Stellar Smart Contract CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: 1.94.0
+          targets: wasm32-unknown-unknown, wasm32v1-none
+          profile: minimal
+
+      - name: Install Stellar CLI
+        uses: stellar/stellar-cli@v25.2.0
+
+      - name: Build Contract
+        run: stellar contract build --package auction-contract
+
+      - name: Verify WASM exists
+        run: ls -l target/wasm32v1-none/release/auction_contract.wasm
