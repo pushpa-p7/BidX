@@ -141,12 +141,11 @@ The main contract never trusts an external service to issue refunds — the escr
 
 
 ### Dark Mode & Manager Console
-<img width="1917" height="867" alt="Dark mode manager console" src="https://github.com/user-attachments/assets/f0cf56c5-cfb7-4521-8ebf-b0c7d148b711" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/26f279d7-ac23-4ce7-936d-ebd0ecfb3eba" />
 
 ### Mobile Responsive View
-<p align="center">
-    <img width="272" height="582" alt="Mobile responsive view" src="https://github.com/user-attachments/assets/415b3070-010d-457b-9fca-a7e428c03dca" />
-</p>
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/900a3237-fda8-4770-8f7b-9194e7522a0d" />
+
 
 *The application is fully responsive and supports secure, trustless bidding across all devices.*
 
